@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+    <title>Actualización de Usuario</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Actualización de Usuario</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return validarFormulario();">                            
+                            <div class="mb-3">
+                                <label for="documento" class="form-label">Documento de Identidad</label>
+                                <input type="text" class="form-control" id="documento" name="documento" onkeypress="return soloNumeros(event)">
+                                <button type="button" class="btn btn-primary search-btn" id="btnBuscar" onclick="buscarDocumento()">Buscar</button>
+                            </div>
+                            <div class="mb-3 hide-on-start" id="nombreCompletoDiv" >
+                                <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="direccionDiv">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="fechaNacimientoDiv">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="telefonoDiv">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" name="telefono" onkeypress="return soloNumeros(event)">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="emailDiv">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="userDiv">
+                                <label for="user" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="user" name="user">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="passwordDiv">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="confirmDiv">
+                                <label for="confirma_password" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirma_password" name="confirma_password">
+                            </div>
+                            <div class="mb-3 hide-on-start" id="rolDiv">
+                                <label for="rol" class="form-label">Rol</label>
+                                <select class="form-select" id="rol" name="tipoDocumento">
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Estandar">Estándar</option>                                    
+                                </select>
+
+                            <div class="btn-center">
+                                <button type="button" class="btn btn-success me-2 hide-on-start" id="btnActualizar"  onclick="actualizarDatos()">Actualizar</button>
+                                <button type="button" class="btn btn-danger me-2 hide-on-start" id="btnEliminar" onclick="eliminarRegistro()">Eliminar</button>
+                                <button type="button" class="btn btn-secondary hide-on-start" id="btnCancelar" onclick="cancelarFormulario()">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana modal de error
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Error en el formulario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="errorMessages">                    
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // Variables para controlar el estado del formulario
+        var formularioEnEdicion = false;
+        var documentoEncontrado = false;
+
+        function limpiarCampos() {
+            // Limpia los campos, oculta los campos adicionales y muestra el botón de buscar
+            document.getElementById("documento").value = "";
+            document.getElementById("nombreCompleto").value = "";
+            document.getElementById("direccion").value = "";
+            document.getElementById("fechaNacimiento").value = "";
+            document.getElementById("telefono").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("user").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("confirma_password").value = "";
+            document.getElementById("rol").value = "";
+
+            // Restaura la visibilidad inicial
+            document.querySelectorAll('.hide-on-start').forEach(function (element) {
+                element.style.display = "none";
+            });
+
+            // Restaura la visibilidad de los botones
+            document.getElementById("btnActualizar").style.display = "none";
+            document.getElementById("btnEliminar").style.display = "none";
+            document.getElementById("btnCancelar").style.display = "none";
+
+            // Muestra el botón de buscar
+            document.getElementById("btnBuscar").style.display = "block";
+
+            // Restaura el estado del formulario
+            formularioEnEdicion = false;
+            documentoEncontrado = false;
+        }
+
+        function validarFormulario() {
+            var camposNoVacios = ['documento','nombreCompleto','direccion','fechaNacimiento','telefono','email','user','password','confirma_password','rol']; // Agrega otros campos aquí
+            for (var i = 0; i < camposNoVacios.length; i++) {
+                var campo = document.getElementById(camposNoVacios[i]).value.trim();
+                if (campo === '') {
+                    mostrarError('El campo ' + camposNoVacios[i] + ' no puede estar vacío.');
+                    return false;
+                }
+            }
+            var documento = document.getElementById("documento").value;
+            var telefono = document.getElementById("telefono").value;            
+
+            if (!/^\d+$/.test(documento)) {
+                mostrarError("Validar campo Documento de Identidad.");
+                return false;
+            }
+
+            if (!/^\d+$/.test(telefono)) {
+                mostrarError("Validar campo Teléfono.");
+                return false;
+            }
+            // Validar Contraseña y Confirmar Contraseña
+            var password = document.getElementById("password").value;
+            var confirma_password = document.getElementById("confirma_password").value;
+
+            if (contieneCaracteresNoPermitidos(password) || contieneCaracteresNoPermitidos(confirma_password)) {
+                mostrarError("La contraseña no puede contener los caracteres $, %, &, /, *, -, ñ");
+                return false;
+            }
+
+            // Validar que las contraseñas coincidan
+            if (password !== confirma_password) {
+                mostrarError("Las contraseñas no coinciden.");
+                return false;
+            }
+            return true;
+        }
+
+        function contieneCaracteresNoPermitidos(texto) {
+            var caracteresNoPermitidos = /[$%&/,*ñ-]/;
+            return caracteresNoPermitidos.test(texto);
+        }
+
+        function mostrarError(mensaje) {
+            // Muestra el mensaje de error en la ventana modal
+            var errorMessages = document.getElementById('errorMessages');
+            errorMessages.innerHTML = '<p>' + mensaje + '</p>';
+            $('#errorModal').modal('show');
+        }
+
+        function soloNumeros(event) {
+            // Permite solo números en el campo
+            var charCode = event.which ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function buscarDocumento() {
+            // Simulación de búsqueda en la base de datos (SQLite)
+            // Puedes personalizar esta parte según tu implementación real
+            var documento = document.getElementById("documento").value;
+            if (documento !== "") {
+                // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
+                document.getElementById("nombreCompletoDiv").style.display = "block";
+                document.getElementById("direccionDiv").style.display = "block";
+                document.getElementById("fechaNacimientoDiv").style.display = "block";
+                document.getElementById("telefonoDiv").style.display = "block";
+                document.getElementById("emailDiv").style.display = "block";
+                document.getElementById("userDiv").style.display = "block";
+                document.getElementById("passwordDiv").style.display = "block";
+                document.getElementById("confirmDiv").style.display = "block";
+                document.getElementById("rolDiv").style.display = "block";
+                document.getElementById("btnBuscar").style.display = "none";
+
+                // Muestra los botones de actualizar y eliminar
+                document.getElementById("btnActualizar").style.display = "block";
+                document.getElementById("btnEliminar").style.display = "block";
+                document.getElementById("btnCancelar").style.display = "block";
+
+                // Bloquea los campos "Documento de Identidad"                
+                document.getElementById("documento").disabled = true;
+
+                // Actualiza el estado del formulario
+                formularioEnEdicion = true;
+                documentoEncontrado = true;
+
+                // Aquí puedes cargar los datos encontrados en el formulario para su edición
+                // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
+
+                // Luego, estableces esos datos en los campos correspondientes:
+                // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+            } else {
+                // Muestra un mensaje indicando que el documento no fue encontrado
+                mostrarError("Documento no encontrado en la base de datos.");
+            }
+        }
+
+        function cancelarFormulario() {
+            // Restaura el formulario al estado inicial
+            // Habilita los campos "Documento de Identidad"
+            
+            document.getElementById("documento").disabled = false;
+            limpiarCampos();
+        }
+
+        function actualizarDatos() {
+            // Actualiza los datos en la base de datos (SQLite)
+            // Puedes personalizar esta parte según tu implementación real
+
+            // Aquí puedes obtener los valores de los campos y enviarlos a la base de datos para actualizar
+            // Por ejemplo, puedes hacer una consulta UPDATE en la base de datos
+            // Actualiza el estado del formulario
+            // Habilita los campos "Documento de Identidad"            
+            document.getElementById("documento").disabled = false;
+            formularioEnEdicion = false;
+            documentoEncontrado = true;
+
+            // Puedes mostrar un mensaje de éxito si la actualización fue exitosa
+
+            // Restaura el formulario al estado inicial
+            limpiarCampos();
+        }
+
+        function eliminarRegistro() {
+            // Elimina el registro de la base de datos (SQLite)
+            // Puedes personalizar esta parte según tu implementación real
+
+            // Aquí puedes obtener el valor del documento y enviarlo a la base de datos para eliminar
+            // Por ejemplo, puedes hacer una consulta DELETE en la base de datos
+
+            // Puedes mostrar un mensaje de éxito si la eliminación fue exitosa
+            // Habilita los campos "Documento de Identidad"            
+            document.getElementById("documento").disabled = false;
+
+            // Restaura el formulario al estado inicial
+            limpiarCampos();
+        }
+    </script>
+</body>
+
+</html>

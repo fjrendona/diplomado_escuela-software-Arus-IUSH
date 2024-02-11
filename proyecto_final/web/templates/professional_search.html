@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+    <title>Consulta de Profesional</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Consulta de Profesional</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return validarFormulario();">
+                            <div class="mb-3">
+                                <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                                <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+                                    <option value="CC">Cédula de Ciudadanía</option>
+                                    <option value="PP">Pasaporte</option>
+                                    <option value="CE">Cédula de Extranjería</option>
+                                    <option value="TI">Tarjeta de Identidad</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="documento" class="form-label">Documento de Identidad</label>
+                                <input type="text" class="form-control" id="documento" name="documento" onkeypress="return soloNumeros(event)">
+                                <button type="button" class="btn btn-primary search-btn" id="btnBuscar" onclick="buscarDocumento()">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tabla para mostrar resultados -->
+    <div class="row" id="tablaResultados" class="hide-on-start">
+        <div class="col-md-6 offset-md-3 " id="tablaContainer">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo de Documento</th>
+                        <th>Documento</th>
+                        <th>Nombre Completo</th>
+                        <th>Dirección</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Cargo en Proyecto</th>
+                        <th>Salario</th>
+                        <th>Tarjeta Profesional</th>
+                    </tr>
+                </thead>
+                <tbody id="resultadosBody">
+                    <!-- Los resultados se cargarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    var datosPersonas = [];
+    function buscarDocumento() {
+        // Supongamos que obtienes los datos de un servicio ficticio
+        var datosFicticios = {
+            tipoDocumento: "CC",
+            documento: "123456789",
+            nombreCompleto: "Juan Pérez",
+            direccion: "Calle 123",
+            fechaNacimiento: "01/01/1990",
+            telefono: "1234567890",
+            email: "juan.perez@gmail.com",
+            cargoProyecto: "Desarrollador Web",
+            salario: "$50,000",
+            tarjetaProfesional: "123ABC"
+        };
+        var datosFicticios2 = {
+            tipoDocumento: "CE",
+            documento: "987654321",
+            nombreCompleto: "María González",
+            direccion: "Avenida 456",
+            fechaNacimiento: "15/03/1985",
+            telefono: "9876543210",
+            email: "maria.gonzalez@hotmail.com",
+            cargoProyecto: "Diseñadora Gráfica",
+            salario: "$45,000",
+            tarjetaProfesional: "456XYZ"                
+            };
+        // Agrega los datos a la lista
+        datosPersonas.push(datosFicticios, datosFicticios2);
+
+        // Muestra la tabla de resultados y carga los datos
+        mostrarResultados(datosFicticios);
+    }
+
+    function mostrarResultados() {
+        // Muestra la tabla de resultados
+        document.getElementById('tablaResultados').classList.remove('hide-on-start');
+
+        // Rellena la tabla con los datos
+        var resultadosBody = document.getElementById('resultadosBody');
+        resultadosBody.innerHTML = '';
+
+        // Itera sobre la lista de datosPersonas
+        for (var i = 0; i < datosPersonas.length; i++) {
+            var datos = datosPersonas[i];
+
+            // Crea una fila para cada persona
+            var fila = `
+                <tr>
+                    <td>${datos.tipoDocumento}</td>
+                    <td>${datos.documento}</td>
+                    <td>${datos.nombreCompleto}</td>
+                    <td>${datos.direccion}</td>
+                    <td>${datos.fechaNacimiento}</td>
+                    <td>${datos.telefono}</td>
+                    <td>${datos.email}</td>
+                    <td>${datos.cargoProyecto}</td>
+                    <td>${datos.salario}</td>
+                    <td>${datos.tarjetaProfesional}</td>                    
+                </tr>
+            `;
+
+            // Agrega la fila a la tabla
+            resultadosBody.innerHTML += fila;
+        }
+    }
+</script>
+                            
+</body>
+</html>

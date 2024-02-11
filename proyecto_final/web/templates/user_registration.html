@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/foto-gratis/surtido-diversidad-vista-superior-manos-papel-diferentes-colores_23-2148642211.jpg?w=740&t=st=1707086416~exp=1707087016~hmac=bdb3b7248a23b928c052bedc8ff1b7048eb1f0f7a1be01f66132f5477240ed5c');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        .card {
+            margin-top: 50px;
+        }
+
+        .btn-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <title>Registro de Usuario</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Registro de Usuario</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return validarFormulario();">                            
+                            <div class="mb-3">
+                                <label for="documento" class="form-label">Documento de Identidad</label>
+                                <input type="text" class="form-control" id="documento" name="documento" onkeypress="return soloNumeros(event)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" name="telefono" onkeypress="return soloNumeros(event)">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="user" name="user">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirma_password" class="form-label">Confirmar Contraseña</label>
+                                <input type="password" class="form-control" id="confirma_password" name="confirma_password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="rol" class="form-label">Rol</label>
+                                <select class="form-select" id="rol" name="tipoDocumento">
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Estandar">Estándar</option>                                    
+                                </select>
+                            </div>
+
+                            <div class="btn-center">
+                                <button type="submit" class="btn btn-primary me-2">Enviar</button>
+                                <button type="button" class="btn btn-secondary"
+                                    onclick="limpiarCampos()">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana modal de error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error en el formulario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="errorMessages">
+            <!-- Aquí se mostrarán los mensajes de error dinámicamente -->
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function limpiarCampos() {            
+            document.getElementById("documento").value = "";
+            document.getElementById("nombreCompleto").value = "";
+            document.getElementById("direccion").value = "";
+            document.getElementById("fechaNacimiento").value = "";
+            document.getElementById("telefono").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("user").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("confirma_password").value = "";
+            document.getElementById("rol").value = "";
+        }
+        function validarFormulario() {
+            var camposNoVacios = ['documento','nombreCompleto','direccion','fechaNacimiento','telefono','email','user','password','confirma_password','rol']; // Agrega otros campos aquí
+            for (var i = 0; i < camposNoVacios.length; i++) {
+                var campo = document.getElementById(camposNoVacios[i]).value.trim();
+                if (campo === '') {
+                    mostrarError('El campo ' + camposNoVacios[i] + ' no puede estar vacío.');
+                    return false;
+                }
+            }
+            var documento = document.getElementById("documento").value;
+            var telefono = document.getElementById("telefono").value;            
+
+            if (!/^\d+$/.test(documento)) {
+                mostrarError("Validar campo Documento de Identidad.");
+                return false;
+            }
+
+            if (!/^\d+$/.test(telefono)) {
+                mostrarError("Validar campo Teléfono.");
+                return false;
+            }
+            // Validar Contraseña y Confirmar Contraseña
+            var password = document.getElementById("password").value;
+            var confirma_password = document.getElementById("confirma_password").value;
+
+            if (contieneCaracteresNoPermitidos(password) || contieneCaracteresNoPermitidos(confirma_password)) {
+                mostrarError("La contraseña no puede contener los caracteres $, %, &, /, *, -, ñ");
+                return false;
+            }
+
+            // Validar que las contraseñas coincidan
+            if (password !== confirma_password) {
+                mostrarError("Las contraseñas no coinciden.");
+                return false;
+            }
+
+            return true;
+            
+        }
+        function contieneCaracteresNoPermitidos(texto) {
+            var caracteresNoPermitidos = /[$%&/,*ñ-]/;
+            return caracteresNoPermitidos.test(texto);
+        }
+
+        function mostrarError(mensaje) {
+            // Muestra el mensaje de error en la ventana modal
+            var errorMessages = document.getElementById('errorMessages');
+            errorMessages.innerHTML = '<p>' + mensaje + '</p>';
+            $('#errorModal').modal('show');
+        }
+        function soloNumeros(event) {
+            // Permite solo números en el campo
+            var charCode = event.which ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

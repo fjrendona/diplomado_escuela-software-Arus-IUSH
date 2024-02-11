@@ -1,0 +1,47 @@
+body {
+    background-image: url('https://img.freepik.com/foto-gratis/surtido-diversidad-vista-superior-manos-papel-diferentes-colores_23-2148642211.jpg?w=740&t=st=1707086416~exp=1707087016~hmac=bdb3b7248a23b928c052bedc8ff1b7048eb1f0f7a1be01f66132f5477240ed5c');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.card {
+    margin-top: 50px;
+}
+
+.btn-center {
+    display: flex;            
+    justify-content: center;
+    align-items: center;
+}
+
+.search-btn {
+    margin-top: 10px;
+}
+
+.hide-on-start {
+    display: none;
+}
+
+.btn-center button {
+margin-top: 10px; 
+}
+
+#tablaContainer {
+    width: 50%;
+    overflow-x: auto;
+    max-height: 400px; 
+    }
+
+#tablaResultados {
+    margin-top: 20px;
+}
+
+.col-background {
+    background: linear-gradient(to right, #f6f6f632, #6c757d);
+}
+
+#contentFrame {
+    background-image: url('https://img.freepik.com/vector-premium/caridad-fundacion-logo-vector_23987-228.jpg');
+}
