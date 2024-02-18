@@ -32,6 +32,7 @@ function cancelarFormulario(parameters) {
     };  
 
 function validarFormulario(parameters) {
+    
     var camposNoVacios = parameters;    
     for (var i = 0; i < camposNoVacios.length; i++) {
         var campo = document.getElementById(camposNoVacios[i]).value.trim();
@@ -89,7 +90,7 @@ function soloNumeros(event) {
 // Consulta de Profesional
 
 var datosPersonas = [];
-function buscarDocumento() {
+function buscarDocumentoProf() {
     
 
     var documentoInput = document.getElementById("documento");
@@ -177,20 +178,27 @@ function buscarDocumento(parameters) {
 }
 
 // Actualización de Profesional
-function actualizarDatos(parameters) {
+function actualizarDatos(parameters, event) {
     // Actualiza los datos en la base de datos (SQLite)
     // Puedes personalizar esta parte según tu implementación real
 
     // Aquí puedes obtener los valores de los campos y enviarlos a la base de datos para actualizar
     // Por ejemplo, puedes hacer una consulta UPDATE en la base de datos
     // Actualiza el estado del formulario
-    // Habilita los campos "Tipo de Documento" y "Documento de Identidad"
+    // Habilita los campos 
+    event.preventDefault();
+    var formularioValido = validarFormulario(parameters);
+    if (formularioValido) {
+        // Envía el formulario manualmente
+        var form = event.target.form;
+        form.submit();
+    }
     parameters.forEach(element => {document.getElementById(element).disabled=false;});    
     formularioEnEdicion = false;
-    documentoEncontrado = true;
+    documentoEncontrado = true;  
 
     // Puedes mostrar un mensaje de éxito si la actualización fue exitosa
-    mostrarOk("Profesional actualizado exitosamente.")
+    mostrarOk("Registro actualizado exitosamente.")
     // Restaura el formulario al estado inicial
     limpiarCampos(parameters,true);
 }
@@ -204,7 +212,9 @@ function eliminarRegistro(parameters) {
 
     // Puedes mostrar un mensaje de éxito si la eliminación fue exitosa
     // Habilita los campos "Tipo de Documento" y "Documento de Identidad"
-    parameters.forEach(element => {document.getElementById(element).disabled=false;}); 
+    parameters.forEach(element => {document.getElementById(element).disabled=false;});
+
+    mostrarOk("Registro eliminado exitosamente.")
 
     // Restaura el formulario al estado inicial
     limpiarCampos(parameters,true);
@@ -240,5 +250,245 @@ function mostrarResultados() {
 
         // Agrega la fila a la tabla
         resultadosBody.innerHTML += fila;
+    }
+}
+function mostrarResultadosProyecto() {
+    // Muestra la tabla de resultados
+    document.getElementById('tablaResultados').classList.remove('hide-on-start');
+
+    // Rellena la tabla con los datos
+    var resultadosBody = document.getElementById('resultadosBody');
+    resultadosBody.innerHTML = '';
+
+    // Itera sobre la lista de datosPersonas
+    for (var i = 0; i < datosProyecto.length; i++) {
+        var datos = datosProyecto[i];
+
+        // Crea una fila para cada persona
+        var fila = `
+            <tr>
+                <td>${datos.idproyecto}</td>
+                <td>${datos.nombreProyecto}</td>
+                <td>${datos.fechaInicio}</td>
+                <td>${datos.fechaFinalizacion}</td>
+                <td>${datos.ciudad}</td>                                   
+            </tr>
+        `;
+
+        // Agrega la fila a la tabla
+        resultadosBody.innerHTML += fila;
+    }
+}
+//  Busqueda de Identificador de Contrato (Actualización de contrato)
+function buscarIdContrato() {
+    // Simulación de búsqueda en la base de datos (SQLite)
+    // Puedes personalizar esta parte según tu implementación real
+    var idcontrato = document.getElementById("idcontrato").value;
+    if (idcontrato !== "") {
+        // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
+        document.getElementById("fechaInicioDiv").style.display = "block";
+        document.getElementById("fechaFinalizacionDiv").style.display = "block";
+        document.getElementById("valorContratoDiv").style.display = "block";
+        document.getElementById("objetoContratoDiv").style.display = "block";
+        document.getElementById("profesionalACargoDiv").style.display = "block";
+        document.getElementById("proyectoDiv").style.display = "block";                
+
+        // Muestra los botones de actualizar y eliminar
+        document.getElementById("btnActualizar").style.display = "block";
+        document.getElementById("btnEliminar").style.display = "block";
+        document.getElementById("btnCancelar").style.display = "block";
+
+        // Bloquea los campos "Tipo de Documento" y "Documento de Identidad"                
+        document.getElementById("idcontrato").disabled = true;
+
+        // Actualiza el estado del formulario
+        formularioEnEdicion = true;
+        documentoEncontrado = true;
+
+        // Aquí puedes cargar los datos encontrados en el formulario para su edición
+        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
+
+        // Luego, estableces esos datos en los campos correspondientes:
+        // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+    } else {
+        // Muestra un mensaje indicando que el documento no fue encontrado
+        mostrarError("Identificador no encontrado en la base de datos.");
+    }
+}
+// Buscar actividad (Actualización de Actividades)
+function buscarActividad() {
+    // Simulación de búsqueda en la base de datos (SQLite)
+    // Puedes personalizar esta parte según tu implementación real
+    var idactividad = document.getElementById("idActividad").value;
+    if (idactividad !== "") {
+        // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
+        document.getElementById("nombreDiv").style.display = "block"
+        document.getElementById("propositoDiv").style.display = "block";
+        document.getElementById("fechaEjecucionDiv").style.display = "block";
+        document.getElementById("proyectoDiv").style.display = "block";       
+
+        // Muestra los botones de actualizar y eliminar
+        document.getElementById("btnActualizar").style.display = "block";
+        document.getElementById("btnEliminar").style.display = "block";
+        document.getElementById("btnCancelar").style.display = "block";
+        document.getElementById("idActividad").disabled = true;
+
+        // Actualiza el estado del formulario
+        formularioEnEdicion = true;
+        documentoEncontrado = true;
+
+        // Aquí puedes cargar los datos encontrados en el formulario para su edición
+        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
+
+        // Luego, estableces esos datos en los campos correspondientes:
+        // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+    } else {
+        // Muestra un mensaje indicando que el documento no fue encontrado
+        mostrarError("Identificador no encontrado en la base de datos.");
+    }
+}
+// Mostrar campos paara Consulta Proyecto
+function mostrarCampos() {
+    var tipoConsulta = document.getElementById('tipoConsulta').value;
+
+    // Ocultar todos los campos
+    document.getElementById('divValor').classList.add('hidden');
+    document.getElementById('divFechaInicio').classList.add('hidden');
+    document.getElementById('divDocumento').classList.add('hidden');
+
+    // Mostrar el campo correspondiente
+    if (tipoConsulta === 'valor') {
+        document.getElementById('divValor').classList.remove('hidden');
+    } else if (tipoConsulta === 'fechaInicio') {
+        document.getElementById('divFechaInicio').classList.remove('hidden');
+    } else if (tipoConsulta === 'profesional') {
+        document.getElementById('divDocumento').classList.remove('hidden');
+    }
+}
+// Buscar Proyectos (Actualización de Proyectos)
+var datosProyecto = [];
+function buscarProyecto() {
+    // Simulación de búsqueda en la base de datos (SQLite)
+    // Puedes personalizar esta parte según tu implementación real
+    var idcontrato = document.getElementById("idproyecto").value;
+    if (idcontrato !== "") {
+        // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
+        document.getElementById("nombreProyectoDiv").style.display = "block";
+        document.getElementById("fechaInicioDiv").style.display = "block";
+        document.getElementById("fechaFinalizacionDiv").style.display = "block";
+        document.getElementById("ciudadDiv").style.display = "block";
+
+        // Muestra los botones de actualizar y eliminar
+        document.getElementById("btnActualizar").style.display = "block";
+        document.getElementById("btnEliminar").style.display = "block";
+        document.getElementById("btnCancelar").style.display = "block";
+
+        // Bloquea los campos "Tipo de Documento" y "Documento de Identidad"                
+        document.getElementById("idproyecto").disabled = true;
+
+        // Actualiza el estado del formulario
+        formularioEnEdicion = true;
+        documentoEncontrado = true;
+
+        // Aquí puedes cargar los datos encontrados en el formulario para su edición
+        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
+
+        // Luego, estableces esos datos en los campos correspondientes:
+        // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+    } else {
+        // Muestra un mensaje indicando que el documento no fue encontrado
+        mostrarError("Identificador no encontrado en la base de datos.");
+    }
+}
+
+function buscarProyectoAct() {    
+
+    // Obtenemos el tipo de consulta seleccionado
+    var tipoConsulta = document.getElementById("tipoConsulta").value;    
+
+    // Verificamos si se seleccionó un tipo de consulta
+    if (!tipoConsulta) {
+        mostrarError("Debes seleccionar un tipo de consulta.");
+        return;
+    }
+
+    // Obtenemos los valores de los campos según el tipo de consulta
+    var valor = document.getElementById("valor").value.trim();    
+    var fechaInicio = document.getElementById("fechaInicio").value.trim();    
+    var documento = document.getElementById("documento").value.trim();
+
+    // Realizamos la búsqueda según el tipo de consulta
+    if (tipoConsulta === "fechaInicio") {
+        var datos = {
+            idproyecto: "111",
+            nombreProyecto: "XXXXXX",
+            fechaInicio: "15/03/2024",
+            fechaFinalizacion: "15/05/2024",
+            ciudad: "Albania"
+            };
+        datosProyecto.push(datos);
+        mostrarResultadosProyecto(datos);
+    } else if (tipoConsulta === "profesional") {
+        var datos = {
+            idproyecto: "111",
+            nombreProyecto: "XXXXXX",
+            fechaInicio: "15/03/2024",
+            fechaFinalizacion: "15/05/2024",
+            ciudad: "Albania"
+            };
+       
+        datosProyecto.push(datos);
+        mostrarResultadosProyecto(datos);
+    } else if (tipoConsulta === "valor") {
+        // Realizar búsqueda por valor (datos ficticios)
+        var datos = {
+            idproyecto: "111",
+            nombreProyecto: "XXXXXX",
+            fechaInicio: "15/03/2024",
+            fechaFinalizacion: "15/05/2024",
+            ciudad: "Albania"
+            };
+        datosProyecto.push(datos);
+        mostrarResultadosProyecto(datos);
+    }
+}  
+    
+function buscarDocumentoUser() {
+    // Simulación de búsqueda en la base de datos (SQLite)
+    // Puedes personalizar esta parte según tu implementación real
+    var documento = document.getElementById("documento").value;
+    if (documento !== "") {
+        // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
+        document.getElementById("nombreCompletoDiv").style.display = "block";
+        document.getElementById("direccionDiv").style.display = "block";
+        document.getElementById("fechaNacimientoDiv").style.display = "block";
+        document.getElementById("telefonoDiv").style.display = "block";
+        document.getElementById("emailDiv").style.display = "block";
+        document.getElementById("userDiv").style.display = "block";
+        document.getElementById("passwordDiv").style.display = "block";
+        document.getElementById("confirmDiv").style.display = "block";
+        document.getElementById("rolDiv").style.display = "block";
+        document.getElementById("btnBuscar").style.display = "none";
+
+        // Muestra los botones de actualizar y eliminar
+        document.getElementById("btnActualizar").style.display = "block";
+        document.getElementById("btnEliminar").style.display = "block";
+        document.getElementById("btnCancelar").style.display = "block";
+
+        // Bloquea los campos "Documento de Identidad"                
+        document.getElementById("documento").disabled = true;
+
+        // Actualiza el estado del formulario
+        formularioEnEdicion = true;
+        documentoEncontrado = true;
+
+        // Aquí puedes cargar los datos encontrados en el formulario para su edición
+        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
+
+        // Luego, estableces esos datos en los campos correspondientes:
+        // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+    } else {
+        // Muestra un mensaje indicando que el documento no fue encontrado
+        mostrarError("Documento no encontrado en la base de datos.");
     }
 }

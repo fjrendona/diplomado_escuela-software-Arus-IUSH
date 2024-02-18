@@ -21,11 +21,15 @@
                         <h2>Actualización de Actividades</h2>
                     </div>
                     <div class="card-body">
-                        <form onsubmit="return validarFormulario();">
+                        <form onsubmit="return validarFormulario(['idActividad','nombreActividad','proposito','fechaEjecucion','proyecto']);">
                             <div class="mb-3">
+                                <label for="idActividad" class="form-label">Identificador de la actividad</label>
+                                <input type="text" class="form-control" id="idActividad" name="idActividad">
+                                <button type="button" class="btn btn-primary search-btn" id="btnBuscar" onclick="buscarActividad()">Buscar</button>
+                            </div>
+                            <div class="mb-3 hide-on-start" id="nombreDiv">
                                 <label for="nombreActividad" class="form-label">Nombre de la actividad</label>
-                                <input type="text" class="form-control" id="nombreActividad" name="nombreActividad">
-                                <button type="button" class="btn btn-primary search-btn" id="btnBuscar" onclick="buscarDocumento()">Buscar</button>
+                                <input type="text" class="form-control" id="nombreActividad" name="nombreActividad">                                
                             </div>
                             <div class="mb-3 hide-on-start" id="propositoDiv">
                                 <label for="proposito" class="form-label">Proposito de la actividad</label>
@@ -37,12 +41,13 @@
                             </div>
                             <div class="mb-3 hide-on-start" id="proyectoDiv">
                                 <label for="proyecto" class="form-label">Proyecto</label>
-                                <input type="text" class="form-control" id="proyecto" name="proyecto">
+                                <select class="form-select" id="proyecto" name="proyecto">                                    
+                                </select>
                             </div>
                             <div class="btn-center">
-                                <button type="button" class="btn btn-success me-2 hide-on-start" id="btnActualizar"  onclick="actualizarDatos()">Actualizar</button>
-                                <button type="button" class="btn btn-danger me-2 hide-on-start" id="btnEliminar" onclick="eliminarRegistro()">Eliminar</button>
-                                <button type="button" class="btn btn-secondary hide-on-start" id="btnCancelar" onclick="cancelarFormulario()">Cancelar</button>
+                                <button type="submit" class="btn btn-success me-2 hide-on-start" id="btnActualizar">Actualizar</button>
+                                <button type="button" class="btn btn-danger me-2 hide-on-start" id="btnEliminar" onclick="eliminarRegistro(['idActividad'])">Eliminar</button>
+                                <button type="button" class="btn btn-secondary hide-on-start" id="btnCancelar" onclick="cancelarFormulario(['idActividad'])">Cancelar</button>
                             </div>
                         </form>
                     </div>
@@ -53,143 +58,57 @@
     
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Error en el formulario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="errorMessages">
-            
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Error en el formulario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="errorMessages">            
+                </div>
             </div>
         </div>
+    </div>
+    <!-- Ventana modal OK -->
+    <div class="modal fade" id="okModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="okMessages">                    
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="../static/js/scripts.js"></script>  
 
-    <script>        
-        var formularioEnEdicion = false;
-        var documentoEncontrado = false;
+    <script> 
+        function cargarProyectos() {     
+            
+            var proyectos = [
+                { id: 101, nombre: 'Construcción Casas' },
+                { id: 102, nombre: 'Recuperación zonas verdes' },
+                { id: 103, nombre: 'Jornada de vacunación para perros y gatos' }
+            ];        
 
-        function limpiarCampos() {
-            document.getElementById("nombreActividad").value = "";
-            document.getElementById("proposito").value = "";
-            document.getElementById("fechaEjecucion").value = "";
-            document.getElementById("proyecto").value = "";
-
-            document.querySelectorAll('.hide-on-start').forEach(function (element) {
-                element.style.display = "none";
+            // Llenar la lista desplegable de proyectos
+            var selectProyectos = document.getElementById('proyecto');
+            proyectos.forEach(function (proyecto) {
+                var option = document.createElement('option');
+                option.value = proyecto.id;
+                option.text = proyecto.nombre;
+                selectProyectos.add(option);
             });
-
-            // Restaura la visibilidad de los botones
-            document.getElementById("btnActualizar").style.display = "none";
-            document.getElementById("btnEliminar").style.display = "none";
-            document.getElementById("btnCancelar").style.display = "none";
-
-            // Muestra el botón de buscar
-            document.getElementById("btnBuscar").style.display = "block";
-
-            // Restaura el estado del formulario
-            formularioEnEdicion = false;
-            documentoEncontrado = false;
-        }
-        function validarFormulario() {
-            var camposNoVacios = ['nombreActividad','proposito','fechaEjecucion','proyecto']; // Agrega otros campos aquí
-            for (var i = 0; i < camposNoVacios.length; i++) {
-                var campo = document.getElementById(camposNoVacios[i]).value.trim();
-                if (campo === '') {
-                    mostrarError('El campo ' + camposNoVacios[i] + ' no puede estar vacío.');
-                    return false;
-                }
-            }
-            var nombreActividad = document.getElementById("nombreActividad").value;
-            var proposito = document.getElementById("proposito").value;
-            var fechaEjecucion = document.getElementById("fechaEjecucion").value;
-            var proyecto = document.getElementById("proyecto").value;           
-
-            return true;
-        }
-        function mostrarError(mensaje) {
-            // Muestra el mensaje de error en la ventana modal
-            var errorMessages = document.getElementById('errorMessages');
-            errorMessages.innerHTML = '<p>' + mensaje + '</p>';
-            $('#errorModal').modal('show');
         }
 
-        function buscarDocumento() {
-            // Simulación de búsqueda en la base de datos (SQLite)
-            // Puedes personalizar esta parte según tu implementación real
-            var idcontrato = document.getElementById("nombreActividad").value;
-            if (idcontrato !== "") {
-                // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
-                document.getElementById("propositoDiv").style.display = "block";
-                document.getElementById("fechaEjecucionDiv").style.display = "block";
-                document.getElementById("proyectoDiv").style.display = "block";       
-
-                // Muestra los botones de actualizar y eliminar
-                document.getElementById("btnActualizar").style.display = "block";
-                document.getElementById("btnEliminar").style.display = "block";
-                document.getElementById("btnCancelar").style.display = "block";
-
-                // Bloquea los campos "Tipo de Documento" y "Documento de Identidad"                
-                document.getElementById("idcontrato").disabled = true;
-
-                // Actualiza el estado del formulario
-                formularioEnEdicion = true;
-                documentoEncontrado = true;
-
-                // Aquí puedes cargar los datos encontrados en el formulario para su edición
-                // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
-
-                // Luego, estableces esos datos en los campos correspondientes:
-                // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
-            } else {
-                // Muestra un mensaje indicando que el documento no fue encontrado
-                mostrarError("Identificador no encontrado en la base de datos.");
-            }
-        }
-
-        function cancelarFormulario() {
-            // Restaura el formulario al estado inicial
-            // Habilita los campos "Tipo de Documento" y "Documento de Identidad"            
-            document.getElementById("nombreActividad").disabled = false;
-            limpiarCampos();
-        }
-
-        function actualizarDatos() {
-            // Actualiza los datos en la base de datos (SQLite)
-            // Puedes personalizar esta parte según tu implementación real
-
-            // Aquí puedes obtener los valores de los campos y enviarlos a la base de datos para actualizar
-            // Por ejemplo, puedes hacer una consulta UPDATE en la base de datos
-            // Actualiza el estado del formulario
-            // Habilita los campos "Tipo de Documento" y "Documento de Identidad"            
-            document.getElementById("nombreActividad").disabled = false;
-            formularioEnEdicion = false;
-            documentoEncontrado = true;
-
-            // Puedes mostrar un mensaje de éxito si la actualización fue exitosa
-
-            // Restaura el formulario al estado inicial
-            limpiarCampos();
-        }
-
-        function eliminarRegistro() {
-            // Elimina el registro de la base de datos (SQLite)
-            // Puedes personalizar esta parte según tu implementación real
-
-            // Aquí puedes obtener el valor del documento y enviarlo a la base de datos para eliminar
-            // Por ejemplo, puedes hacer una consulta DELETE en la base de datos
-
-            // Puedes mostrar un mensaje de éxito si la eliminación fue exitosa
-            // Habilita los campos "Tipo de Documento" y "Documento de Identidad"            
-            document.getElementById("nombreActividad").disabled = false;
-
-            // Restaura el formulario al estado inicial
-            limpiarCampos();
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            cargarProyectos();
+        });
     </script>
 </body>
 </html>

@@ -27,6 +27,9 @@ body {
 .btn-center button {
 margin-top: 10px; 
 }
+.hidden {
+    display: none;
+}
 
 #tablaContainer {
     width: 50%;
