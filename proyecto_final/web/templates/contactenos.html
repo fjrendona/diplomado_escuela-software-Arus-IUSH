@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>FUNDACAQUETA</title>
+      <link href="../Static/css/bootstrap.min.css" rel="stylesheet">        
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body background="../Imagenes/fundacion-1.jpeg">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+              <img src="../Imagenes/logo.png" alt="" width="50" height="50">
+              <a class="navbar-brand" type="text">FUNDACAQUETA</a>
+              <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="../Templates/inicio.html">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="../Templates/quienes_somos.html">¿Quienes somos?</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="#">Contactenos</a>
+                  </li>
+              </ul>
+              <form class="d-flex">                  
+                  <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+              </form>
+              </div>
+          </div>
+      </nav>
+
+    <div class="container">
+      <form class="row g-3">
+          <div class="col-md-3">
+            <label for="validationDefault01" class="form-label text-light">Nombres</label>
+            <input type="text" class="form-control" id="validationDefault01" value="" required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label text-light">Apellidos</label>
+            <input type="text" class="form-control" id="validationDefault02" value="" required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label text-light">Correo</label>
+            <input type="email" class="form-control" id="validationDefault02" value="" required>
+          </div>
+          <div class="col-md-3">
+            <label for="exampleDataList" class="form-label text-light">Departamentos</label>
+            <input class="form-control" list="datalistOptions" id="DataList" required>
+            <datalist id="datalistOptions">
+              <option value="Amazonas">
+              <option value="Antioquia">
+              <option value="Bolivar">
+              <option value="Cundinamarca">              
+              <option value="Valle">
+            </datalist>
+          </div>
+          <div class="col-md-3" id="Municipios">
+            <label for="exampleDataList" class="form-label text-light">Municipio</label>
+            <input class="form-control" list="listOptions" id="exampleDataList" required>
+            <datalist id="listOptions">
+              <option value="Leticia">
+              <option value="Medellín">
+              <option value="Bogota">
+              <option value="Cartagena">
+              <option value="Cali">
+            </datalist>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault05" class="form-label text-light">Celular</label>
+            <input type="text" class="form-control" id="validationDefault05" required>
+          </div>
+          <div class="col-12">
+            <label for="exampleFormControlTextarea1" class="form-label text-light">Comentarios</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <script src="../Static/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript">
+        function habilitarMunicipios(){
+          document.getElementById('contactoRelacionado').classList.remove('invisible');
+          document.getElementById('contactoRelacionado').classList.add('visible');
+        }
+      </script>
+  </body>
+</html>

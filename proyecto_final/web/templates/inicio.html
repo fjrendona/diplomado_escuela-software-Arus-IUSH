@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>FUNDACAQUETA</title>
+      <link href="../Static/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body background="../Imagenes/fundacion-1.jpeg">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <img src="../Imagenes/logo.png" alt="" width="50" height="50">
+            <a class="navbar-brand" type="text">FUNDACAQUETA</a>
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../Templates/inicio.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="../Templates/quienes_somos.html">¿Quienes somos?</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="../Templates/contactenos.html">Contactenos</a>
+                </li>
+            </ul>
+            <form class="d-flex">                  
+              <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            </form>
+          </div>
+      </nav>
+      
+      <style>
+        .dj-banner{margin: 30px 0; position: relative;}
+        .dj-banner .dj-bg{background-image: url(/images/bg-img-banner.png); background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%;}
+        .dj-banner .dj-bg img{display: block; margin: 20px auto; padding: 20px 0;}
+        .dj-banner .dj-text{text-align: center; padding-bottom: 20px;}
+        @media screen and (min-width:768px){
+           .dj-banner .dj-bg img{margin-right: 100px;}
+           .dj-banner .dj-text{position: absolute; top: 50%; left: 10%; transform: translate(-10%, -50%); width: 50%; text-align: left;}
+           .dj-banner .dj-text h1{font-size: calc(2*1.5vw);}
+           .dj-banner .dj-text p{font-size: calc(1.2*1.5vw);}
+        }
+    </style>
+
+    <div class="dj-banner">
+        <div class="dj-bg">
+            <img src="../Imagenes/logo.png" alt="" height="300px">
+            <div class="dj-text">
+                <h1 style="color: #eef6f7; font-size: 21px"><b>¿Quiénes somos?</b></h1>
+                <p style="color: #eef6f7; font-size: 14px;">En FundaCaqueta, creemos en el poder de la solidaridad y la acción comunitaria para generar un impacto positivo en nuestras vidas y en la sociedad. 
+                    Somos una fundación comprometida con el bienestar y desarrollo de la región de Caquetá.</p>
+                <a class="btn btn-secondary btn-sm" href="../Templates/quienes_somos.html" role="button">Saber más</a>                   
+            </div>
+        </div>            
+    </div>      
+  <script src="../Static/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
