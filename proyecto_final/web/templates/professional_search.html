@@ -20,7 +20,7 @@
                         <h2>Consulta de Profesional</h2>
                     </div>
                     <div class="card-body">
-                        <form onsubmit="return validarFormulario();">
+                        <form onsubmit="return validarFormulario(['documento']);">
                             <div class="mb-3">
                                 <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
                                 <select class="form-select" id="tipoDocumento" name="tipoDocumento">
@@ -65,74 +65,19 @@
         </div>
     </div>
 </div>
-<script>
-    var datosPersonas = [];
-    function buscarDocumento() {
-        
-        var datosFicticios = {
-            tipoDocumento: "CC",
-            documento: "123456789",
-            nombreCompleto: "Juan Pérez",
-            direccion: "Calle 123",
-            fechaNacimiento: "01/01/1990",
-            telefono: "1234567890",
-            email: "juan.perez@gmail.com",
-            cargoProyecto: "Desarrollador Web",
-            salario: "$50,000",
-            tarjetaProfesional: "123ABC"
-        };
-        var datosFicticios2 = {
-            tipoDocumento: "CE",
-            documento: "987654321",
-            nombreCompleto: "María González",
-            direccion: "Avenida 456",
-            fechaNacimiento: "15/03/1985",
-            telefono: "9876543210",
-            email: "maria.gonzalez@hotmail.com",
-            cargoProyecto: "Diseñadora Gráfica",
-            salario: "$45,000",
-            tarjetaProfesional: "456XYZ"                
-            };
-        // Agrega los datos a la lista
-        datosPersonas.push(datosFicticios, datosFicticios2);
-
-        // Muestra la tabla de resultados y carga los datos
-        mostrarResultados(datosFicticios);
-    }
-
-    function mostrarResultados() {
-        // Muestra la tabla de resultados
-        document.getElementById('tablaResultados').classList.remove('hide-on-start');
-
-        // Rellena la tabla con los datos
-        var resultadosBody = document.getElementById('resultadosBody');
-        resultadosBody.innerHTML = '';
-
-        // Itera sobre la lista de datosPersonas
-        for (var i = 0; i < datosPersonas.length; i++) {
-            var datos = datosPersonas[i];
-
-            // Crea una fila para cada persona
-            var fila = `
-                <tr>
-                    <td>${datos.tipoDocumento}</td>
-                    <td>${datos.documento}</td>
-                    <td>${datos.nombreCompleto}</td>
-                    <td>${datos.direccion}</td>
-                    <td>${datos.fechaNacimiento}</td>
-                    <td>${datos.telefono}</td>
-                    <td>${datos.email}</td>
-                    <td>${datos.cargoProyecto}</td>
-                    <td>${datos.salario}</td>
-                    <td>${datos.tarjetaProfesional}</td>                    
-                </tr>
-            `;
-
-            // Agrega la fila a la tabla
-            resultadosBody.innerHTML += fila;
-        }
-    }
-</script>
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Error en el formulario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="errorMessages">            
+        </div>
+    </div>
+    </div>
+</div>
+<script src="../static/js/scripts.js"></script>
                             
 </body>
 </html>
