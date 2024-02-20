@@ -41,7 +41,7 @@
                             <div class="mb-3">
                                 <label for="ciudad" class="form-label">Ciudad</label>
                                 <select class="form-select" id="ciudad" name="ciudad">
-                                    
+                                    <option selected>Elegir ciudad</option>
                                 </select>
                             </div>
 
@@ -88,31 +88,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src="../static/js/scripts.js"></script>
-    <script> 
-        function cargarCiudades() {     
-            
-            var proyectos = [
-                { id: 101, nombre: 'Albania' },
-                { id: 102, nombre: 'Florencia' },
-                { id: 103, nombre: 'Solano' }
-            ];        
-
-            // Llenar la lista desplegable de proyectos
-            var selectProyectos = document.getElementById('ciudad');
-            proyectos.forEach(function (proyecto) {
-                var option = document.createElement('option');
-                option.value = proyecto.id;
-                option.text = proyecto.nombre;
-                selectProyectos.add(option);
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            cargarCiudades();
-        });
-    </script>
-
-    
 </body>
-
 </html>

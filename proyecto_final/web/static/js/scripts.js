@@ -315,6 +315,31 @@ function buscarIdContrato() {
         mostrarError("Identificador no encontrado en la base de datos.");
     }
 }
+
+//Llenar lista de profesionales
+// window.onload = function(){
+//     const profe = document.getElementById("profesionalACargo");
+//     dame_profesionales().then((pro)=>{
+//         pro.map((pro) =>{
+//             const option = document.createElement('option');
+//             option.value = pro.id;
+//             option.text = pro.nombre;
+//             profe.appendChild(option);
+//     })
+//     })  
+// }
+
+async function dame_profesionales(){
+    const API = "http://127.0.0.1:5002/profesional";
+    try{
+    const response = await fetch(API);
+    console.log(response.json);
+    return response.json();
+    }catch(error){
+    console.error("Error en fetch", error);
+    }
+}
+
 // Buscar actividad (Actualización de Actividades)
 function buscarActividad() {
     // Simulación de búsqueda en la base de datos (SQLite)
@@ -365,6 +390,18 @@ function mostrarCampos() {
         document.getElementById('divDocumento').classList.remove('hidden');
     }
 }
+
+async function dame_proyectos(){
+    const API = "http://127.0.0.1:5003/proyecto";
+    try{
+    const response = await fetch(API);
+    console.log(response.json);
+    return response.json();
+    }catch(error){
+    console.error("Error en fetch", error);
+    }
+}
+
 // Buscar Proyectos (Actualización de Proyectos)
 var datosProyecto = [];
 function buscarProyecto() {
@@ -451,7 +488,80 @@ function buscarProyectoAct() {
         datosProyecto.push(datos);
         mostrarResultadosProyecto(datos);
     }
-}  
+}
+
+//Llenar listas desplegables
+window.onload = function(){
+    const combo = document.getElementById("ciudad");
+    dame_municipio().then((m)=>{
+        m.map((m) =>{
+        const option = document.createElement('option');
+        option.value = m.id;
+        option.text = m.nombre;
+        combo.appendChild(option);
+    })
+    })
+    
+    const profe = document.getElementById("profesionalACargo");
+    dame_profesionales().then((pro)=>{
+        pro.map((pro) =>{
+            const option = document.createElement('option');
+            option.value = pro.id;
+            option.text = pro.nombre;
+            profe.appendChild(option);
+    })
+    })
+
+    const proye = document.getElementById("proyecto");
+    dame_proyectos().then((proy)=>{
+        proy.map((proy) =>{
+            const option = document.createElement('option');
+            option.value = proy.id;
+            option.text = proy.nombre;
+            proye.appendChild(option);
+    })
+    })
+}
+
+async function dame_data(){
+    const API = " http://127.0.0.1:5000/departamento";
+    try{
+    const response = await fetch(API);
+    console.log(response.json);
+    return response.json();
+    }catch(error){
+    console.error("Error en fetch", error);
+    }
+}
+
+function seleccionar_departamento(){
+    console.log("Ingreso onchange")
+    const componente = document.getElementById("departamento")
+    const index = componente.selectedIndex;
+    const dep = componente.options[index];
+    
+    const mun_com = document.getElementById("ciudad")
+    mun_com.innerHTML = "";
+    dame_municipio(departamento.value).then((resultado) => {
+    resultado.map((m) =>{
+        const option = document.createElement('option');
+        option.value = m.id;
+        option.text = m.nombre;
+        mun_com.appendChild(option);
+    })
+    });
+}
+
+async function dame_municipio(id){
+    const API = " http://127.0.0.1:5001/municipio/" + id;
+    try{
+    const response = await fetch(API);
+    console.log(response.json);
+    return response.json();
+    }catch(error){
+    console.error("Error en fetch", error);
+    }
+}
     
 function buscarDocumentoUser() {
     // Simulación de búsqueda en la base de datos (SQLite)

@@ -40,7 +40,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="proyecto" class="form-label">Proyecto</label>
-                                <select class="form-select" id="proyecto" name="proyecto">                                    
+                                <select class="form-select" id="proyecto" name="proyecto">
+                                    <option selected>Elegir proyecto</option>                                    
                                 </select>
                             </div>
                             <div class="btn-center">
@@ -73,27 +74,27 @@
         crossorigin="anonymous"></script>
     <script src="../static/js/scripts.js"></script>
     <script> 
-        function cargarProyectos() {     
+        // function cargarProyectos() {     
             
-            var proyectos = [
-                { id: 101, nombre: 'Construcción Casas' },
-                { id: 102, nombre: 'Recuperación zonas verdes' },
-                { id: 103, nombre: 'Jornada de vacunación para perros y gatos' }
-            ];        
+        //     var proyectos = [
+        //         { id: 101, nombre: 'Construcción Casas' },
+        //         { id: 102, nombre: 'Recuperación zonas verdes' },
+        //         { id: 103, nombre: 'Jornada de vacunación para perros y gatos' }
+        //     ];        
 
-            // Llenar la lista desplegable de proyectos
-            var selectProyectos = document.getElementById('proyecto');
-            proyectos.forEach(function (proyecto) {
-                var option = document.createElement('option');
-                option.value = proyecto.id;
-                option.text = proyecto.nombre;
-                selectProyectos.add(option);
-            });
-        }
+        //     // Llenar la lista desplegable de proyectos
+        //     var selectProyectos = document.getElementById('proyecto');
+        //     proyectos.forEach(function (proyecto) {
+        //         var option = document.createElement('option');
+        //         option.value = proyecto.id;
+        //         option.text = proyecto.nombre;
+        //         selectProyectos.add(option);
+        //     });
+        // }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            cargarProyectos();
-        });
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     cargarProyectos();
+        // });
     </script>
     
 </body>

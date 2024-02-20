@@ -45,13 +45,13 @@
                             <div class="mb-3">
                                 <label for="profesionalACargo" class="form-label">Profesional a Cargo</label>
                                 <select class="form-select" id="profesionalACargo" name="profesionalACargo">
-                                    
+                                    <option selected>Elegir profesional</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="proyecto" class="form-label">Proyecto</label>
                                 <select class="form-select" id="proyecto" name="proyecto">
-                                    
+                                    <option selected>Elegir proyecto</option>
                                 </select>
                             </div>
 
@@ -102,38 +102,38 @@
 
     <script>        
         
-        function cargarProfesionalesYProyectos() {
+         function cargarProfesionalesYProyectos() {
         
-            var profesionales = [
-                { id: 1, nombre: 'Juan Pérez' },
-                { id: 2, nombre: 'Ana Gómez' },
-                { id: 3, nombre: 'Carlos Rodríguez' }
-            ];
+            //  var profesionales = [
+            //      { id: 1, nombre: 'Juan Pérez' },
+            //      { id: 2, nombre: 'Ana Gómez' },
+            //      { id: 3, nombre: 'Carlos Rodríguez' }
+            //  ];
 
             
-            var proyectos = [
-                { id: 101, nombre: 'Construcción Casas' },
-                { id: 102, nombre: 'Recuperación zonas verdes' },
-                { id: 103, nombre: 'Jornada de vacunación para perros y gatos' }
-            ];
+            //  var proyectos = [
+            //      { id: 101, nombre: 'Construcción Casas' },
+            //      { id: 102, nombre: 'Recuperación zonas verdes' },
+            //      { id: 103, nombre: 'Jornada de vacunación para perros y gatos' }
+            //  ];
 
-            // Llenar la lista desplegable de profesionales
-            var selectProfesionales = document.getElementById('profesionalACargo');
-            profesionales.forEach(function (profesional) {
-                var option = document.createElement('option');
-                option.value = profesional.id;
-                option.text = profesional.nombre;
-                selectProfesionales.add(option);
-            });
+             // Llenar la lista desplegable de profesionales
+            //  var selectProfesionales = document.getElementById('profesionalACargo');
+            //  profesionales.forEach(function (profesional) {
+            //      var option = document.createElement('option');
+            //      option.value = profesional.id;
+            //      option.text = profesional.nombre;
+            //      selectProfesionales.add(option);
+            //  });
 
-            // Llenar la lista desplegable de proyectos
-            var selectProyectos = document.getElementById('proyecto');
-            proyectos.forEach(function (proyecto) {
-                var option = document.createElement('option');
-                option.value = proyecto.id;
-                option.text = proyecto.nombre;
-                selectProyectos.add(option);
-            });
+             // Llenar la lista desplegable de proyectos
+            //  var selectProyectos = document.getElementById('proyecto');
+            //  proyectos.forEach(function (proyecto) {
+            //      var option = document.createElement('option');
+            //      option.value = proyecto.id;
+            //      option.text = proyecto.nombre;
+            //      selectProyectos.add(option);
+            //  });
         }
 
         document.addEventListener("DOMContentLoaded", function () {
