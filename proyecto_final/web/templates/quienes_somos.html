@@ -1,98 +1,207 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FUNDACAQUETA</title>
-        <link href="../Static/css/bootstrap.min.css" rel="stylesheet">        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body background="../Imagenes/fundacion-1.jpeg">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <img src="../Imagenes/logo.png" alt="" width="50" height="50">
-                <a class="navbar-brand" type="text">FUNDACAQUETA</a>
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../Templates/inicio.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../Templates/quienes_somos.html">¿Quienes somos?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../Templates/contactenos.html">Contactenos</a>
-                    </li>
-                </ul>
-                <form class="d-flex">                    
-                    <button class="btn btn-primary" type="submit">Iniciar sesión</button>
-                </form>
-                </div>
-            </div>
-        </nav>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FUNDACAQUETA</title>    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" >
+</head>
+<body class="specific">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="../Imagenes/logo.png" alt="" width="50" height="50">
+            <a class="navbar-brand" type="text">FUNDACAQUETA</a>
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="../templates/inicio.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">¿Quienes somos?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="../templates/contactenos.html">Contactenos</a>
+                </li>
+            </ul>
+            <form class="d-flex">                    
+                <button class="btn btn-primary" type="button" onclick="window.location.href='../templates/login.html'">Iniciar sesión</button>
+            </form>
+        </div>      
+    </nav>
 
-        <div class="container">
-            <br>
-            <div id="theCarousel" class="carousel slide" data-ride="carousel">
-              <!-- Indicadores -->
-              <ol class="carousel-indicators">
-                <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#theCarousel" data-slide-to="1"></li>
-                <li data-target="#theCarousel" data-slide-to="2"></li>
-                <li data-target="#theCarousel" data-slide-to="3"></li>
-                
-              </ol>
-          
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="https://www.abestudiodecomunicacion.com.mx/wp-content/uploads/2020/11/Imagen-RSE-6.jpg" alt="Ilustracion" >
-                   <div class="carousel-caption d-none d-md-block">
-              <h3>Gusti Ilustración</h3>
-              <p>Exposición</p>
-            </div>
+    <!-- <div class="container">
+        <br>
+        <div id="theCarousel" class="carousel slide data-bs-wrap="true" data-bs-ride="carousel" data-bs-interval="-10000">
+            
+            <ol class="carousel-indicators">
+                <li id="indicator-1" data-bs-target="#theCarousel" data-bs-slide-to="0" class="active bg-success"></li>
+                <li id="indicator-2" data-bs-target="#theCarousel" data-bs-slide-to="1" class="bg-success"></li>
+                <li id="indicator-3" data-bs-target="#theCarousel" data-bs-slide-to="2" class="bg-success"></li>
+                <li id="indicator-4" data-bs-target="#theCarousel" data-slide-bs-to="3"class="bg-success"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <img src="https://www.abestudiodecomunicacion.com.mx/wp-content/uploads/2020/11/Imagen-RSE-6.jpg" alt="Ilustracion" style="width: 1200px; height: 250px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Gusti Ilustración</h3>
+                        <p>Exposición</p>
+                    </div>
                 </div>
-          
-               
-              
-                <div class="item">
-                  <img src="https://i0.wp.com/www.materiagris.es/wp-content/uploads/2018/11/storytelling-storydoing-1.jpg?resize=700%2C300&ssl=1" alt="fotografia" width="600" height="424"> 
-                   <div class="carousel-caption d-none d-md-block">
-              <h3> Xataka Fotografía</h3>
-              <p>Concurso</p>
-            </div>
+                <div class="carousel-item">
+                    <img src="https://i0.wp.com/www.materiagris.es/wp-content/uploads/2018/11/storytelling-storydoing-1.jpg?resize=700%2C300&ssl=1" alt="fotografia" style="width: 1200px; height: 250px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Xataka Fotografía</h3>
+                        <p>Concurso</p>
+                    </div>
                 </div>
-          
-               <div class="item">
-                  <img src="https://st2.depositphotos.com/4441075/11865/v/450/depositphotos_118653726-stock-illustration-hand-dropping-coin-in-moneybox.jpg" alt="pintura" width="600" height="424">
-                   <div class="carousel-caption d-none d-md-block">
-              <h3>DoArt Pintura</h3>
-              <p>Curso</p>
-            </div>
+                <div class="carousel-item">
+                    <img src="https://st2.depositphotos.com/4441075/11865/v/450/depositphotos_118653726-stock-illustration-hand-dropping-coin-in-moneybox.jpg" alt="pintura" style="width: 1200px; height: 250px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>DoArt Pintura</h3>
+                        <p>Curso</p>
+                    </div>
                 </div>
-                 <div class="item">
-                  <img src="https://cdn.dribbble.com/users/324248/screenshots/3978513/planet2_800.jpg" alt="diseno" width="600" height="424"> 
-                   <div class="carousel-caption d-none d-md-block">
-              <h3>UX UI Diseño Gráfico</h3>
-              <p>Curso</p>
-            </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.dribbble.com/users/324248/screenshots/3978513/planet2_800.jpg" alt="diseno" style="width: 1200px; height: 250px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>UX UI Diseño Gráfico</h3>
+                        <p>Curso</p>
+                    </div>
                 </div>
-          
-          
-              <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">anterior</span>
-              </a>
-              <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">siguiente</span>
-              </a>
+                <a class="carousel-control-prev" href="#theCarousel" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#theCarousel" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+                  <span class="visually-hidden">Siguiente</span>
+                </a>
             </div>
+        </div>
+    </div> -->
+    
+    <div class="container">
+      <div class="alert alert-primary text-dark">
+        <h2>Algunos de nuestros aliados</h2>
+      </div>
+    </div>
+    <div class="container"> 
+    <div id="theCarousel" class="carousel slide mt-0" data-bs-ride="carousel" data-bs-interval="4000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://www.abestudiodecomunicacion.com.mx/wp-content/uploads/2020/11/Imagen-RSE-6.jpg" class="d-block w-100" alt="Ilustracion" style="width: 1200px; height: 250px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 style="color: black">Gusti Ilustración</h3>
+            <p style="color: black">Exposición</p>
+        </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://i0.wp.com/www.materiagris.es/wp-content/uploads/2018/11/storytelling-storydoing-1.jpg?resize=700%2C300&ssl=1" class="d-block w-100" alt="fotografia" style="width: 1200px; height: 250px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 style="color: orangered">Xataka Fotografía</h3>
+            <p style="color: orangered">Concurso</p>
+        </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://st2.depositphotos.com/4441075/11865/v/450/depositphotos_118653726-stock-illustration-hand-dropping-coin-in-moneybox.jpg" class="d-block w-100" alt="pintura" style="width: 1200px; height: 250px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 style="color: black">DoArt Pintura</h3>
+            <p style="color: black">Curso</p>
+          </div>          
+        </div>
+        <div class="carousel-item">
+          <img src="https://cdn.dribbble.com/users/324248/screenshots/3978513/planet2_800.jpg" class="d-block w-100" alt="diseno" style="width: 1200px; height: 250px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 style="color: black">UX UI Diseño Gráfico</h3>
+            <p style="color: black">Curso</p>
+          </div>          
+        </div>
+      </div>
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#theCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#theCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>  
+        <button type="button" data-bs-target="#theCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#theCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>    
+      <button class="carousel-control-prev" type="button" data-bs-target="#theCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#theCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span> 
+      </button>
+    </div> 
+    </div>
+    <div class="container mt-4">    
+      <div class="row">
+          <!-- Sección 1 -->
+          <div class="col-md-4">
+              <div class="card mb-4 who-card">
+                  <img src="https://www.fundacionmapfre.org/media/blog/fundaciones-comunitarias-1194x585-1.jpg" class="card-img-top" alt="Imagen Sección 1">
+                  <div class="card-body">
+                      <h5 class="card-title font-weight-bold">Bienvenidos a FundaCaqueta</h5>
+                      <p class="card-text">En FundaCaqueta, creemos en el poder de la solidaridad y la acción comunitaria para generar un impacto positivo en nuestras vidas y en la sociedad. Somos una fundación ficticia comprometida con el bienestar y desarrollo de la región de Caquetá.</p>
+                  </div>
+              </div>
           </div>
-        
-        <script src="../Static/js/bootstrap.bundle.min.js"></script>
-    </body>
+  
+          <!-- Sección 2 -->
+          <div class="col-md-4">
+              <div class="card mb-4 who-card">
+                  <img src="https://www.fundaciontelefonica.co/wp-content/uploads/2023/01/nuestra-mision-en-fundacion-telefonica-movistar-1600x593.jpg" class="card-img-top" alt="Imagen Sección 2">
+                  <div class="card-body">
+                      <h5 class="card-title font-weight-bold">Nuestra Misión</h5>
+                      <p class="card-text">La misión de FundaCaqueta es trabajar de la mano con la comunidad para impulsar iniciativas que fomenten el desarrollo sostenible, la educación, la salud y el bienestar social. Nos esforzamos por ser agentes de cambio, promoviendo la equidad, la inclusión y la participación activa de todos los ciudadanos.</p>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Sección 3 -->
+          <div class="col-md-4">
+              <div class="card mb-4 who-card">
+                  <img src="https://inmediaciones.org/wp-content/uploads/2021/09/valores-768x432.jpg" class="card-img-top" alt="Imagen Sección 3">
+                  <div class="card-body">
+                      <h5 class="card-title font-weight-bold">Valores Fundamentales</h5>
+                      <p class="card-text">En FundaCaqueta, nos guiamos por valores fundamentales que son la base de nuestra labor: Compromiso, Colaboración, Transparencia e Innovación.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="container mt-4">    
+      <div class="row">
+        <!-- Sección 4 -->
+        <div class="col-md-4">
+        <div class="card mb-4 who-card">
+            <img src="https://es.fi-group.com/wp-content/uploads/sites/4/2023/09/mano-hombre-negocios-sosteniendo-tierra-papel-gente-negocios-reunida-planificacion-oficina-e-implementando-ideal-ecologico-politica-corporativa-reducir-emisiones-co2-salvar-tierra-1910x700.jpg" class="card-img-top" alt="Imagen Sección 4">
+            <div class="card-body">
+                <h5 class="card-title font-weight-bold">Nuestro Compromiso Social</h5>
+                <p class="card-text">FundaCaqueta no solo se trata de palabras, sino de acciones tangibles. A través de programas educativos, proyectos de desarrollo comunitario y servicios de salud, buscamos construir un futuro más prometedor para las generaciones venideras.</p>
+            </div>
+        </div>
+        </div>    
+        <!-- Sección 5 -->
+        <div class="col-md-4">
+          <div class="card mb-4 who-card">
+              <img src="https://www.loweb.es/images/equipofranq.jpg" class="card-img-top" alt="Imagen Sección 5">
+              <div class="card-body">
+                  <h5 class="card-title font-weight-bold">Únete a Nosotros</h5>
+                  <p class="card-text">Invitamos a todos aquellos que compartan nuestra visión y valores a unirse a nosotros en este emocionante viaje. Ya sea como voluntario, donante o colaborador, tu apoyo es fundamental para el éxito de FundaCaqueta.</p>
+              </div>
+          </div>
+        </div>
+        </div>        
+      </div>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>    
+    <footer style="bottom: 0; width: 100%; background-color: #839192; color: #fff; padding: 15px 0;" class="text-center py-3">
+      <div class="container">
+          <p>&copy; 2024 Fundación FUNDACAQUETA. Todos los derechos reservados.</p>
+          <p>Developed by: Sebastián Restrepo - Francisco Rendón</p>        
+          <p><a href="https://www.fundacaqueta.org/"><img src="https://img.freepik.com/vector-premium/caridad-fundacion-logo-vector_23987-228.jpg" class=" rounded-circle img-fluid" alt="User Image" width="50"></p>
+      </div>
+  </footer>  
+</body>
 </html>

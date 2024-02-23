@@ -5,6 +5,10 @@ body {
     background-attachment: fixed;
     height: 100vh;
 }
+body.specific{
+    background: url('../../Imagenes/fundacion-1.jpeg') no-repeat fixed;
+    background-size: cover;
+}
 
 .card {
     margin-top: 50px;
@@ -47,4 +51,25 @@ margin-top: 10px;
 
 #contentFrame {
     background-image: url('https://img.freepik.com/vector-premium/caridad-fundacion-logo-vector_23987-228.jpg');
+}
+
+.who-card {
+    transition: transform 0.3s ease;
+}
+
+.who-card:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}
+.font-weight-bold {
+    font-weight: bold !important;
+}
+.alert {
+    max-width: 450px;
+    max-height:60px;
+    margin: 0 auto;
+    margin-left: 0; 
+}
+.push {
+    min-height: 100px; 
 }

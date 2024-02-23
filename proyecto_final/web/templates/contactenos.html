@@ -3,30 +3,30 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>FUNDACAQUETA</title>
-      <link href="../Static/css/bootstrap.min.css" rel="stylesheet">        
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <title>FUNDACAQUETA</title>             
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../static/css/styles.css" >
   </head>
-  <body background="../Imagenes/fundacion-1.jpeg">
+  <body class="specific">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
               <img src="../Imagenes/logo.png" alt="" width="50" height="50">
               <a class="navbar-brand" type="text">FUNDACAQUETA</a>
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                   <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="../Templates/inicio.html">Inicio</a>
+                      <a class="nav-link active" aria-current="page" href="../templates/inicio.html">Inicio</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link active" href="../Templates/quienes_somos.html">¿Quienes somos?</a>
+                      <a class="nav-link active" href="../templates/quienes_somos.html">¿Quienes somos?</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link active" href="#">Contactenos</a>
                   </li>
               </ul>
               <form class="d-flex">                  
-                  <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+                  <button class="btn btn-primary" type="button" onclick="window.location.href='../templates/login.html'">Iniciar sesión</button>
               </form>
               </div>
           </div>
@@ -78,12 +78,20 @@
           </div>
         </form>
       </div>
-      <script src="../Static/js/bootstrap.bundle.min.js"></script>
+      <div class="push"></div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
       <script type="text/javascript">
         function habilitarMunicipios(){
           document.getElementById('contactoRelacionado').classList.remove('invisible');
           document.getElementById('contactoRelacionado').classList.add('visible');
         }
       </script>
+      <footer style="bottom: 0; width: 100%; background-color: #839192; color: #fff; padding: 15px 0;" class="text-center py-3">
+        <div class="container">
+            <p>&copy; 2024 Fundación FUNDACAQUETA. Todos los derechos reservados.</p>
+            <p>Developed by: Sebastián Restrepo - Francisco Rendón</p>        
+            <p><a href="https://www.fundacaqueta.org/"><img src="https://img.freepik.com/vector-premium/caridad-fundacion-logo-vector_23987-228.jpg" class=" rounded-circle img-fluid" alt="User Image" width="50"></p>
+        </div>        
+    </footer>
   </body>
 </html>
