@@ -24,10 +24,7 @@
                             <div class="mb-3">
                                 <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
                                 <select class="form-select" id="tipoDocumento" name="tipoDocumento">
-                                    <option value="CC">Cédula de Ciudadanía</option>
-                                    <option value="PP">Pasaporte</option>
-                                    <option value="CE">Cédula de Extranjería</option>
-                                    <option value="TI">Tarjeta de Identidad</option>
+                                    <option selected>Tipo de documento</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -70,7 +67,7 @@
                             </div>
 
                             <div class="btn-center">
-                                <button type="submit" class="btn btn-success me-2 hide-on-start" id="btnActualizar">Actualizar</button>
+                                <button type="submit" class="btn btn-success me-2 hide-on-start" id="btnActualizar" onclick="actualizarDatos(['documento','tipoDocumento','nombreCompleto','direccion','fechaNacimiento','telefono','email','cargoProyecto','salario','tarjetaProfesional'], event)">Actualizar</button>
                                 <button type="button" class="btn btn-danger me-2 hide-on-start" id="btnEliminar" onclick="eliminarRegistro(['documento','tipoDocumento'])">Eliminar</button>
                                 <button type="button" class="btn btn-secondary hide-on-start" id="btnCancelar" onclick="cancelarFormulario(['documento','tipoDocumento'])">Cancelar</button>
                             </div>

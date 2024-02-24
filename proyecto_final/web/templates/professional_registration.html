@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body">
                         <!-- onsubmit="return validarFormulario(['documento','tipoDocumento','nombreCompleto','direccion','fechaNacimiento','telefono','email','cargoProyecto','salario','tarjetaProfesional']);" -->
-                        <form action="http://127.0.0.1:5000/profesional" method="POST">
+                        <form method="POST">
                             <div class="mb-3">
                                 <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
                                 <select class="form-select" id="tipoDocumento" name="tipoDocumento">
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="btn-center">
-                                <button type="button" class="btn btn-primary me-2" value="Enviar" onclick="nuevo_Profesional()">Enviar</button>
+                                <button type="button" class="btn btn-primary me-2" value="Enviar" onclick="insertar_Profesional()">Enviar</button>
                                 <button type="button" class="btn btn-secondary"
                                     onclick="limpiarCampos(['documento','tipoDocumento','nombreCompleto','direccion','fechaNacimiento','telefono','email','cargoProyecto','salario','tarjetaProfesional'],false)">Cancelar</button>
                             </div>

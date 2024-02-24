@@ -87,7 +87,12 @@ function soloNumeros(event) {
     return true;
 }
 
-function nuevo_Profesional(){
+function insertar_Profesional(){
+    nuevo_Profesional();
+    limpiarCampos(['documento', 'tipoDocumento', 'nombreCompleto', 'direccion', 'fechaNacimiento', 'telefono', 'email', 'cargoProyecto', 'salario', 'tarjetaProfesional'], false);
+}
+
+async function nuevo_Profesional(){
     var url = 'http://127.0.0.1:5000/profesional';
     var datos = {
         tipoDocumento: document.getElementById("tipoDocumento").value,
@@ -101,6 +106,7 @@ function nuevo_Profesional(){
         salario: document.getElementById("salario").value,
         tarjetaProfesional: document.getElementById("tarjetaProfesional").value
     };
+    console.log(datos)
     fetch(url,{
         method:'POST',
         headers:{
@@ -108,7 +114,7 @@ function nuevo_Profesional(){
         },
         body: JSON.stringify(datos),
         })
-        .then((res) => res.json())
+        // .then((res) => res.json())
         .then((res) => {
             console.log(res);
         });
@@ -117,87 +123,140 @@ function nuevo_Profesional(){
 
 // Consulta de Profesional
 var datosPersonas = [];
-function buscarDocumentoProf() {
-    
+// function buscarDocumentoProf() {   
 
-    var documentoInput = document.getElementById("documento");
-    var documentoValue = documentoInput.value.trim();
+//     var documento = document.getElementById("documento").value;
+//     if (documentoValue === "") {
+//             mostrarError("El campo documento no puede estar vacío.");
+//             return;
+//         }else{
+//     // Realizar la solicitud a la API
+//             fetch(http='//127.0.0.1:5000/profesional/${identificacion}')
+//             .then(response => {
+//                 // Verificar si la respuesta es exitosa (status code 2xx)
+//                 if (!response.ok) {
+//                 throw new Error('Error en la solicitud: ${response.status} ${response.statusText}');
+//                 }
+//                 // Devolver la respuesta JSON
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 // Llenar los campos con los datos obtenidos
+//                 document.getElementById("tipoDocumento").value = data.tipoDocumento;
+//                 document.getElementById("documento").value = data.documento;
+//                 document.getElementById("nombreCompleto").value = data.nombreCompleto;
+//                 document.getElementById("direccion").value = data.direccion;
+//                 document.getElementById("fechaNacimiento").value = data.fechaNacimiento;
+//                 document.getElementById("telefono").value = data.telefono;
+//                 document.getElementById("email").value = data.email;
+//                 document.getElementById("cargoProyecto").value = data.cargoProyecto;
+//                 document.getElementById("salario").value = data.salario;
+//                 document.getElementById("tarjetaProfesional").value = data.tarjetaProfesional;
+//                 // ... llenar otros campos ...
 
-    if (documentoValue === "") {
-        mostrarError("El campo documento no puede estar vacío.");
-        return;
-    }else{
-        var datosFicticios = {
-        tipoDocumento: "CC",
-        documento: "123456789",
-        nombreCompleto: "Juan Pérez",
-        direccion: "Calle 123",
-        fechaNacimiento: "01/01/1990",
-        telefono: "1234567890",
-        email: "juan.perez@gmail.com",
-        cargoProyecto: "Desarrollador Web",
-        salario: "$50,000",
-        tarjetaProfesional: "123ABC"
-    };
-    var datosFicticios2 = {
-        tipoDocumento: "CE",
-        documento: "987654321",
-        nombreCompleto: "María González",
-        direccion: "Avenida 456",
-        fechaNacimiento: "15/03/1985",
-        telefono: "9876543210",
-        email: "maria.gonzalez@hotmail.com",
-        cargoProyecto: "Diseñadora Gráfica",
-        salario: "$45,000",
-        tarjetaProfesional: "456XYZ"                
-        };
-    // Agrega los datos a la lista
-    datosPersonas.push(datosFicticios, datosFicticios2);
+//                 // Puedes agregar más campos según tus necesidades
+//             })
+//             .catch(error => {
+//                 console.error('Error:', error.message);
+//                 // Manejar el error según tus necesidades
+//             });
+//         }
+// }
 
-    // Muestra la tabla de resultados y carga los datos
-    mostrarResultados(datosFicticios);
-    }
-    
-    
-}
+    // var documentoValue = documentoInput.value.trim();
+
+    // if (documentoValue === "") {
+    //     mostrarError("El campo documento no puede estar vacío.");
+    //     return;
+    // }else{
+    //     var datosFicticios = {
+    //     tipoDocumento: "CC",
+    //     documento: "123456789",
+    //     nombreCompleto: "Juan Pérez",
+    //     direccion: "Calle 123",
+    //     fechaNacimiento: "01/01/1990",
+    //     telefono: "1234567890",
+    //     email: "juan.perez@gmail.com",
+    //     cargoProyecto: "Desarrollador Web",
+    //     salario: "$50,000",
+    //     tarjetaProfesional: "123ABC"
+    // };
+    // var datosFicticios2 = {
+    //     tipoDocumento: "CE",
+    //     documento: "987654321",
+    //     nombreCompleto: "María González",
+    //     direccion: "Avenida 456",
+    //     fechaNacimiento: "15/03/1985",
+    //     telefono: "9876543210",
+    //     email: "maria.gonzalez@hotmail.com",
+    //     cargoProyecto: "Diseñadora Gráfica",
+    //     salario: "$45,000",
+    //     tarjetaProfesional: "456XYZ"                
+    //     };
+    // // Agrega los datos a la lista
+    // datosPersonas.push(datosFicticios, datosFicticios2);
+
+    // // Muestra la tabla de resultados y carga los datos
+    // mostrarResultados(datosFicticios);
+    // }
+
 // Buscar documento para actualización de profesional
 function buscarDocumento(parameters) {
     // Simulación de búsqueda en la base de datos (SQLite)
     // Puedes personalizar esta parte según tu implementación real
     var documento = document.getElementById("documento").value;
     if (documento !== "") {
-        // Documento encontrado, muestra los campos adicionales y oculta el botón de buscar
-        // parameters.forEach(element => {document.getElementById(element).style.display = "block"});
-        document.getElementById("nombreCompletoDiv").style.display = "block";
-        document.getElementById("direccionDiv").style.display = "block";
-        document.getElementById("fechaNacimientoDiv").style.display = "block";
-        document.getElementById("telefonoDiv").style.display = "block";
-        document.getElementById("emailDiv").style.display = "block";
-        document.getElementById("cargoProyectoDiv").style.display = "block";
-        document.getElementById("salarioDiv").style.display = "block";
-        document.getElementById("tarjetaProfesionalDiv").style.display = "block";
-        document.getElementById("btnBuscar").style.display = "none";     
+        fetch(http=`//127.0.0.1:5000/profesional/${documento}`)
+        .then(response => {
+            // Verificar si la respuesta es exitosa (status code 2xx)
+            if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            }
+            // Devolver la respuesta JSON
+            return response.json();
+        })
+        .then(data => {            
+            console.log(data)
+            // Llenar los campos con los datos obtenidos
+            document.getElementById("tipoDocumento").value = data.TipoDoc_idTipoDoc;
+            document.getElementById("documento").value = data.Identificacion;
+            document.getElementById("nombreCompleto").value = data.Nombre;
+            document.getElementById("direccion").value = data.Direccion;
+            document.getElementById("fechaNacimiento").value = data.FechaNacimiento;
+            document.getElementById("telefono").value = data.Telefono;
+            document.getElementById("email").value = data.Email;
+            document.getElementById("cargoProyecto").value = data.CargoProyecto;
+            document.getElementById("salario").value = data.Salario;
+            document.getElementById("tarjetaProfesional").value = data.TarjetaProfesional;
 
-        // Muestra los botones de actualizar y eliminar
-        document.getElementById("btnActualizar").style.display = "block";
-        document.getElementById("btnEliminar").style.display = "block";
-        document.getElementById("btnCancelar").style.display = "block";
+            // Mostrar los campos adicionales y ocultar el botón de buscar
+            document.getElementById("nombreCompletoDiv").style.display = "block";
+            document.getElementById("direccionDiv").style.display = "block";
+            document.getElementById("fechaNacimientoDiv").style.display = "block";
+            document.getElementById("telefonoDiv").style.display = "block";
+            document.getElementById("emailDiv").style.display = "block";
+            document.getElementById("cargoProyectoDiv").style.display = "block";
+            document.getElementById("salarioDiv").style.display = "block";
+            document.getElementById("tarjetaProfesionalDiv").style.display = "block";
+            document.getElementById("btnBuscar").style.display = "none";     
 
-        if (parameters.includes("tipoDocumento") && parameters.includes("documento")){
-            // Bloquea los campos "Tipo de Documento" y "Documento de Identidad"
+            // Mostrar los botones de actualizar y eliminar
+            document.getElementById("btnActualizar").style.display = "block";
+            document.getElementById("btnEliminar").style.display = "block";
+            document.getElementById("btnCancelar").style.display = "block";
+
+            // Bloquear campos "Tipo de Documento" y "Documento de Identidad"
             document.getElementById("tipoDocumento").disabled = true;
             document.getElementById("documento").disabled = true;
-        }      
 
-        // Actualiza el estado del formulario
-        formularioEnEdicion = true;
-        documentoEncontrado = true;
-
-        // Aquí puedes cargar los datos encontrados en el formulario para su edición
-        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener los datos del documento
-
-        // Luego, estableces esos datos en los campos correspondientes:
-        // document.getElementById("nombreCompleto").value = datos.nombreCompleto;
+            // Actualizar el estado del formulario
+            formularioEnEdicion = true;
+            documentoEncontrado = true;
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            // Manejar el error según tus necesidades
+        });
     } else {
         // Muestra un mensaje indicando que el documento no fue encontrado
         mostrarError("Documento no encontrado en la base de datos.");
@@ -205,44 +264,125 @@ function buscarDocumento(parameters) {
 }
 
 // Actualización de Profesional
+// function actualizarDatos(parameters, event) {
+//     // Actualiza los datos en la base de datos (SQLite)
+//     // Puedes personalizar esta parte según tu implementación real
+
+//     // Aquí puedes obtener los valores de los campos y enviarlos a la base de datos para actualizar
+//     // Por ejemplo, puedes hacer una consulta UPDATE en la base de datos
+//     // Actualiza el estado del formulario
+//     // Habilita los campos 
+//     event.preventDefault();
+//     var formularioValido = validarFormulario(parameters);
+//     if (formularioValido) {
+//         // Envía el formulario manualmente
+//         var form = event.target.form;
+//         form.submit();
+//     }
+//     parameters.forEach(element => {document.getElementById(element).disabled=false;});    
+//     formularioEnEdicion = false;
+//     documentoEncontrado = true;  
+
+//     // Puedes mostrar un mensaje de éxito si la actualización fue exitosa
+//     mostrarOk("Registro actualizado exitosamente.")
+//     // Restaura el formulario al estado inicial
+//     limpiarCampos(parameters,true);
+// }
+
 function actualizarDatos(parameters, event) {
-    // Actualiza los datos en la base de datos (SQLite)
-    // Puedes personalizar esta parte según tu implementación real
-
-    // Aquí puedes obtener los valores de los campos y enviarlos a la base de datos para actualizar
-    // Por ejemplo, puedes hacer una consulta UPDATE en la base de datos
-    // Actualiza el estado del formulario
-    // Habilita los campos 
+    // Evita que el formulario se envíe automáticamente
     event.preventDefault();
-    var formularioValido = validarFormulario(parameters);
-    if (formularioValido) {
-        // Envía el formulario manualmente
-        var form = event.target.form;
-        form.submit();
-    }
-    parameters.forEach(element => {document.getElementById(element).disabled=false;});    
-    formularioEnEdicion = false;
-    documentoEncontrado = true;  
 
-    // Puedes mostrar un mensaje de éxito si la actualización fue exitosa
-    mostrarOk("Registro actualizado exitosamente.")
-    // Restaura el formulario al estado inicial
-    limpiarCampos(parameters,true);
+    // Valida el formulario antes de proceder
+    var formularioValido = validarFormulario(parameters);
+
+    if (formularioValido) {
+        // Obtiene los valores de los campos
+        var identificacion = document.getElementById("documento").value;
+        var tipoDocumento = document.getElementById("tipoDocumento").value;
+        var nombreCompleto = document.getElementById("nombreCompleto").value;
+        var direccion = document.getElementById("direccion").value;
+        var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        var telefono = document.getElementById("telefono").value;
+        var email = document.getElementById("email").value;
+        var cargoProyecto = document.getElementById("cargoProyecto").value;
+        var salario = document.getElementById("salario").value;
+        var tarjetaProfesional = document.getElementById("tarjetaProfesional").value;
+
+        // Construye el objeto de datos para la solicitud
+        var datos = {
+            TipoDoc_idTipoDoc: tipoDocumento,
+            Identificacion: identificacion,
+            Nombre: nombreCompleto,
+            Direccion: direccion,
+            FechaNacimiento: fechaNacimiento,
+            Telefono: telefono,
+            Email: email,
+            CargoProyecto: cargoProyecto,
+            Salario: salario,
+            TarjetaProfesional: tarjetaProfesional
+        };
+
+        // Realiza la solicitud PUT a la API
+        fetch(`http://127.0.0.1:5000/profesional/${identificacion}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            }
+            // Devuelve la respuesta JSON
+            return response;
+        })
+        .then(data => {
+            // Muestra un mensaje de éxito si la actualización fue exitosa
+            mostrarOk("Registro actualizado exitosamente.");
+            // Restaura el formulario al estado inicial
+            limpiarCampos(parameters, true);
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            // Muestra un mensaje de error si la actualización falla
+            mostrarError("Error al actualizar el registro.");
+        });
+    }
+
+    // Restaura la visibilidad de los campos y el formulario al estado inicial
+    parameters.forEach(element => { document.getElementById(element).disabled = false; });
+    formularioEnEdicion = false;
+    documentoEncontrado = true;
 }
+
 // Eliminación de Profesional
 function eliminarRegistro(parameters) {
-    // Elimina el registro de la base de datos (SQLite)
-    // Puedes personalizar esta parte según tu implementación real
-
-    // Aquí puedes obtener el valor del documento y enviarlo a la base de datos para eliminar
-    // Por ejemplo, puedes hacer una consulta DELETE en la base de datos
-
-    // Puedes mostrar un mensaje de éxito si la eliminación fue exitosa
-    // Habilita los campos "Tipo de Documento" y "Documento de Identidad"
     parameters.forEach(element => {document.getElementById(element).disabled=false;});
-
-    mostrarOk("Registro eliminado exitosamente.")
-
+    var documento = document.getElementById("documento").value;
+    if (documento !== "") {
+        fetch(http=`//127.0.0.1:5000/profesional/${documento}`, {method:'DELETE'})
+        .then(response => {
+            // Verificar si la respuesta es exitosa (status code 2xx)
+            if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            }
+            // Devolver la respuesta JSON
+            return response;
+        })
+        .then(data => {            
+            console.log(data);            
+            mostrarOk("Registro eliminado exitosamente.");
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            // Manejar el error según tus necesidades
+        });
+    } else {
+        // Muestra un mensaje indicando que el documento no fue encontrado
+        mostrarError("Documento no encontrado en la base de datos.");
+    } 
     // Restaura el formulario al estado inicial
     limpiarCampos(parameters,true);
 }
