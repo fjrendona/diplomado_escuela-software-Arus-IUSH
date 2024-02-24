@@ -87,8 +87,35 @@ function soloNumeros(event) {
     return true;
 }
 
-// Consulta de Profesional
+function nuevo_Profesional(){
+    var url = 'http://127.0.0.1:5000/profesional';
+    var datos = {
+        tipoDocumento: document.getElementById("tipoDocumento").value,
+        documento: document.getElementById("documento").value,
+        nombreCompleto: document.getElementById("nombreCompleto").value,
+        direccion: document.getElementById("direccion").value,
+        fechaNacimiento: document.getElementById("fechaNacimiento").value,
+        telefono: document.getElementById("telefono").value,
+        email: document.getElementById("email").value,
+        cargoProyecto: document.getElementById("cargoProyecto").value,
+        salario: document.getElementById("salario").value,
+        tarjetaProfesional: document.getElementById("tarjetaProfesional").value
+    };
+    fetch(url,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos),
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res);
+        });
+};
 
+
+// Consulta de Profesional
 var datosPersonas = [];
 function buscarDocumentoProf() {
     
@@ -330,7 +357,18 @@ function buscarIdContrato() {
 // }
 
 async function dame_profesionales(){
-    const API = "http://127.0.0.1:5002/profesional";
+    const API = "http://127.0.0.1:5000/profesional";
+    try{
+    const response = await fetch(API);
+    console.log(response.json);
+    return response.json();
+    }catch(error){
+    console.error("Error en fetch", error);
+    }
+}
+
+async function dame_tipoDoc(){
+    const API = "http://127.0.0.1:5004/tipoDoc";
     try{
     const response = await fetch(API);
     console.log(response.json);
@@ -512,6 +550,16 @@ window.onload = function(){
     })
     })
 
+    const tipo = document.getElementById("tipoDocumento");
+    dame_tipoDoc().then((doc)=>{
+        doc.map((doc) =>{
+            const option = document.createElement('option');
+            option.value = doc.id;
+            option.text = doc.nombre;
+            tipo.appendChild(option);
+    })
+    })
+
     const proye = document.getElementById("proyecto");
     dame_proyectos().then((proy)=>{
         proy.map((proy) =>{
@@ -524,7 +572,7 @@ window.onload = function(){
 }
 
 async function dame_data(){
-    const API = " http://127.0.0.1:5000/departamento";
+    const API = "http://127.0.0.1:5000/departamento";
     try{
     const response = await fetch(API);
     console.log(response.json);
@@ -553,7 +601,7 @@ function seleccionar_departamento(){
 }
 
 async function dame_municipio(id){
-    const API = " http://127.0.0.1:5001/municipio/" + id;
+    const API = "http://127.0.0.1:5001/municipio/" + id;
     try{
     const response = await fetch(API);
     console.log(response.json);

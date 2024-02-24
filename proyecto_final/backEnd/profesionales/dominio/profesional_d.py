@@ -7,7 +7,7 @@ class profesional:
         self.nombre = nombre
 
     def __repr__(self):
-        return f"profesional(id: {self.id}, nombre: {self.nombre})"
+        return f"profesional(TipoDoc_idTipoDoc: {self.id}, nombre: {self.nombre})"
 
     def to_json(self):
         return json.dumps(self, default=lambda self: self.__dict__)
