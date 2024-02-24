@@ -217,6 +217,7 @@ function buscarDocumento(parameters) {
         })
         .then(data => {            
             console.log(data)
+            {{data}}
             // Llenar los campos con los datos obtenidos
             document.getElementById("tipoDocumento").value = data.TipoDoc_idTipoDoc;
             document.getElementById("documento").value = data.Identificacion;
