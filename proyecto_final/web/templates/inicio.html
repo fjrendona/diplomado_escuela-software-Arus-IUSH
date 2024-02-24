@@ -4,46 +4,47 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>FUNDACAQUETA</title>
-      <link href="../Static/css/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../static/css/styles.css" >
   </head>
-  <body background="../Imagenes/fundacion-1.jpeg">
+  <body class="specific">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
             <img src="../Imagenes/logo.png" alt="" width="50" height="50">
             <a class="navbar-brand" type="text">FUNDACAQUETA</a>
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="../Templates/inicio.html">Inicio</a>
+                  <a class="nav-link active" aria-current="page" href="../templates/inicio.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Templates/quienes_somos.html">¿Quienes somos?</a>
+                  <a class="nav-link active" href="../templates/quienes_somos.html">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="../Templates/contactenos.html">Contactenos</a>
+                  <a class="nav-link active" href="../templates/contactenos.html">Contactenos</a>
                 </li>
             </ul>
             <form class="d-flex">                  
-              <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+              <button class="btn btn-primary" type="button" onclick="window.location.href='../templates/login.html'">Iniciar sesión</button>
             </form>
           </div>
       </nav>
       
-      <style>
-        .dj-banner{margin: 30px 0; position: relative;}
-        .dj-banner .dj-bg{background-image: url(/images/bg-img-banner.png); background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%;}
-        .dj-banner .dj-bg img{display: block; margin: 20px auto; padding: 20px 0;}
-        .dj-banner .dj-text{text-align: center; padding-bottom: 20px;}
-        @media screen and (min-width:768px){
-           .dj-banner .dj-bg img{margin-right: 100px;}
-           .dj-banner .dj-text{position: absolute; top: 50%; left: 10%; transform: translate(-10%, -50%); width: 50%; text-align: left;}
-           .dj-banner .dj-text h1{font-size: calc(2*1.5vw);}
-           .dj-banner .dj-text p{font-size: calc(1.2*1.5vw);}
-        }
+    <style>
+      .dj-banner{margin: 30px 0; position: relative;}
+      .dj-banner .dj-bg{background-repeat: no-repeat; background-position: center; background-size: cover; width: 100%;}
+      .dj-banner .dj-bg img{display: block; margin: 20px auto; padding: 20px 0;}
+      .dj-banner .dj-text{text-align: center; padding-bottom: 20px;}
+      @media screen and (min-width:768px){
+          .dj-banner .dj-bg img{margin-right: 100px;}
+          .dj-banner .dj-text{position: absolute; top: 50%; left: 10%; transform: translate(-10%, -50%); width: 50%; text-align: left;}
+          .dj-banner .dj-text h1{font-size: calc(2*1.5vw);}
+          .dj-banner .dj-text p{font-size: calc(1.2*1.5vw);}
+      }
     </style>
-
+    
     <div class="dj-banner">
         <div class="dj-bg">
             <img src="../Imagenes/logo.png" alt="" height="300px">
@@ -51,10 +52,47 @@
                 <h1 style="color: #eef6f7; font-size: 21px"><b>¿Quiénes somos?</b></h1>
                 <p style="color: #eef6f7; font-size: 14px;">En FundaCaqueta, creemos en el poder de la solidaridad y la acción comunitaria para generar un impacto positivo en nuestras vidas y en la sociedad. 
                     Somos una fundación comprometida con el bienestar y desarrollo de la región de Caquetá.</p>
-                <a class="btn btn-secondary btn-sm" href="../Templates/quienes_somos.html" role="button">Saber más</a>                   
+                <a class="btn btn-secondary btn-sm" href="../templates/quienes_somos.html" role="button">Saber más</a>                   
             </div>
         </div>            
-    </div>      
-  <script src="../Static/js/bootstrap.bundle.min.js"></script>
+    </div>
+    <div class="container mt-4">
+      <div class="alert alert-primary text-dark col-md-3">
+        <h3>Noticias de Interés</h3>
+        </div>
+    </div>  
+    <div class="container mt-4">
+      <div class="row">
+          <div class="col-md-6 mb-4">
+              <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2023/09/12/6500e496440c0.jpeg" class="img-fluid" alt="Noticia Imagen">
+              <h2 style="color: white;">Voluntariados en el extranjero:¿cómo viajar por el mundo ciudando animales?</h2>              
+              <a href="https://www.eltiempo.com/mundo/mas-regiones/voluntariado-en-el-extranjero-como-viajar-por-el-cuidando-animales-857428" class="btn btn-primary">Leer más</a>
+          </div>
+          <div class="col-md-6 mb-4">
+              <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2017/09/19/59c1c7ea719b5.jpeg" class="img-fluid" alt="Noticia Imagen">
+              <h2 style="color: white;">Lucha contra el cáncer de seno: fundaciones a las que las pacientes pueden acudir</h2>              
+              <a href="https://www.eltiempo.com/vida/mujeres/lucha-contra-el-cancer-de-seno-fundaciones-a-las-que-las-pacientes-pueden-acudir-817343" class="btn btn-primary">Leer más</a>
+          </div>
+          <div class="col-md-6 mb-4">
+            <img src="https://www.eltiempo.com/infografias/2020/12/yo_mayor/img/imagen_apertura.png" class="img-fluid" alt="Noticia Imagen">
+            <h2 style="color: white;">Nuestro mayores cuentan</h2>              
+            <a href="https://www.eltiempo.com/vida/cuentos-de-personas-mayores-de-la-escuela-virtual-de-historias-en-yo-mayor-559614" class="btn btn-primary">Leer más</a>
+          </div>
+          <div class="col-md-6 mb-4">
+            <img src="https://www.eltiempo.com/files/article_main/uploads/2022/09/28/6334840698c3d.jpeg" class="img-fluid" alt="Noticia Imagen">
+            <h2 style="color: white;">Dos fundaciones ganaron el Premio Alejandro Ángel Escobar de Solidaridad 2022</h2>              
+            <a href="https://www.eltiempo.com/vida/premios-alejandro-angel-escobar-de-ciencias-y-solidaridad-ganadores-2022-705874" class="btn btn-primary">Leer más</a>
+          </div>
+      </div>
+  </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <footer style="bottom: 0; width: 100%; background-color: #839192; color: #fff; padding: 15px 0;" class="text-center py-3">
+      <div class="container">
+          <p>&copy; 2024 Fundación FUNDACAQUETA. Todos los derechos reservados.</p>
+          <p>Developed by: Sebastián Restrepo - Francisco Rendón</p>        
+          <p><a href="https://www.fundacaqueta.org/"><img src="https://img.freepik.com/vector-premium/caridad-fundacion-logo-vector_23987-228.jpg" class=" rounded-circle img-fluid" alt="User Image" width="50"></p>
+      </div>
+  </footer>
   </body>
 </html>
